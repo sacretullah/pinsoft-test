@@ -1,20 +1,15 @@
 const initialState = {
-  productList: [],
-  filter: "",
+  filteredProductList: [],
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "SET_FILTER":
+    case "SET_FILTERED_LIST":
       return {
         ...state,
-        filter: action.payload,
+        filteredProductList: action.payload,
       };
-    case "SET_PRODUCT_LIST":
-      return {
-        ...state,
-        productList: action.payload,
-      };
+
     default:
       return state;
   }

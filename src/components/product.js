@@ -1,21 +1,18 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-const ProductList = () => {
-  const products = useSelector((state) => state.products);
-
+const Product = ({ product }) => {
   return (
-    <div className="product-list">
-      {products.map((product) => (
-        <div className="product" key={product.id}>
-          <h3>{product.name}</h3>
-          <p>Category: {product.category}</p>
-          <p>Price: {product.price}</p>
-          <button>Add to Cart</button>
-        </div>
-      ))}
+    <div className="card">
+      <div className="product">
+        <h3>{product.name}</h3>
+        {product.title}
+        <p>Category: {product.category}</p>
+        <p>Price: {product.price}</p>
+        <button>Add to Cart</button>
+      </div>
     </div>
   );
 };
 
-export default ProductList;
+export default Product;

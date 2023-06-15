@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { removeFromCart } from "../Redux/actions";
+import { removeFromCart } from "../redux/actions";
 
 const CartDialog = ({ isOpen, onClose }) => {
   const cartItems = useSelector((state) => state.cart);
