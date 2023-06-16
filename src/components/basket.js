@@ -8,18 +8,11 @@ const Product = ({ product }) => {
   const handleAddToCart = () => {
     dispatch(addToCart(product));
   };
-
   return (
-    <div className="card">
-      <img src={product.image} id="img"></img>
-      <h3>{product.title}</h3>
-
-      <hr></hr>
-      <p className="price"> {product.price} $</p>
-
-      <button class="button-78" role="button" onClick={handleAddToCart}>
-        Add to Cart
-      </button>
+    <div className="product">
+      <h2>{product.name}</h2>
+      <p>{product.price}</p>
+      <button onClick={handleAddToCart}>Sepete Ekle</button>
     </div>
   );
 };

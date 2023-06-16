@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import productList from "../products-list.json";
 import "./product.scss";
 import Product from "./product";
+import Navigation from "./navbar";
 
 const ProductList = () => {
   const dispatch = useDispatch();
@@ -39,29 +40,31 @@ const ProductList = () => {
   return (
     <div className="mainDiv">
       <div>
-        {categories.map((value, key) => (
-          <p key={key}>
-            {value}{" "}
-            <input
-              type="checkbox"
-              value={value}
-              checked={checkedCategories.includes(value)}
-              onChange={(event) => handleCheckbox(event)}
-            ></input>{" "}
-          </p>
-        ))}
+        <Navigation inputValue={inputValue} setInputValue={setInputValue} />
       </div>
-      <div>
-        <input
-          type="text"
-          placeholder="Ürünleri filtrele"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-        />
+      <div className="page">
+        <div className="checkbox-mainDiv">
+          <p>Filter</p>
+
+          {categories.map((value, key) => (
+            <p key={key} className="filter">
+              {value}{" "}
+              <input
+                type="checkbox"
+                value={value}
+                checked={checkedCategories.includes(value)}
+                onChange={(event) => handleCheckbox(event)}
+              ></input>{" "}
+            </p>
+          ))}
+        </div>
+        <div className="cardList">
+          {" "}
+          {result.map((value, index) => (
+            <Product product={value} key={index} />
+          ))}{" "}
+        </div>
       </div>
-      {result.map((value, index) => (
-        <Product product={value} key={index} />
-      ))}
     </div>
   );
 };
