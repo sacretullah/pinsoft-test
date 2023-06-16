@@ -141,7 +141,10 @@ hr {
   justify-content: space-between;
   margin-top: 1rem;
 }
-
+.cart-line {
+  max-width: 250px;
+  min-width: 250px;
+}
 /* CSS */
 .button-78 {
   align-items: center;
@@ -255,12 +258,57 @@ hr {
   cursor: default;
   opacity: 0.24;
 }
+
+.cart-dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.cart-dialog.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cart-dialog__content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  margin-left: 55%;
+  margin-bottom: 1%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  width: 100%;
+}
+
+.cart-dialog__content h2 {
+  margin-top: 0;
+}
+
+.product-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 @media only screen and (min-width: 1541px) {
   .navBar {
     width: 98%;
   }
   .cardList {
     grid-template-columns: auto auto auto auto;
+  }
+  .cart-dialog__content {
+    margin-left: 70%;
+    margin-bottom: 18%;
   }
 }
 @media only screen and (max-width: 720px) {
@@ -269,5 +317,19 @@ hr {
   }
   .cardList {
     grid-template-columns: auto;
+  }
+  .checkbox-mainDiv {
+    width: 150px;
+    margin-left: 40px;
+    margin-top: 160px;
+  }
+  .filter {
+    padding: 5px;
+    margin: 20px;
+  }
+  .cart-dialog__content {
+    margin-bottom: 0%;
+    margin-left: 0%;
+    margin-top: 12%;
   }
 }

@@ -6,9 +6,14 @@ const CartDialog = ({ isOpen, onClose }) => {
   const cartItems = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
-  const handleRemoveFromCart = (productId) => {
-    dispatch(removeFromCart(productId));
+  const handleRemoveFromCart = (itemId) => {
+    dispatch(removeFromCart(itemId));
   };
+  let sum = 0;
+
+  cartItems.forEach((element) => {
+    sum += element.count * element.price;
+  });
 
   return (
     <div className={`cart-dialog ${isOpen ? "open" : ""}`}>
@@ -19,18 +24,27 @@ const CartDialog = ({ isOpen, onClose }) => {
         ) : (
           <ul>
             {cartItems.map((item) => (
-              <li key={item.id}>
-                <div className="cart-item">
-                  <span>{item.name}</span>
-                  <button onClick={() => handleRemoveFromCart(item.id)}>
-                    Remove
-                  </button>
-                </div>
-              </li>
+              <div key={item.id} className="product-container">
+                <p className="cart-line">
+                  {item.name} X {item.count}
+                </p>
+
+                <p>{item.price * item.count} $</p>
+                <button
+                  class="button-78"
+                  role="button"
+                  onClick={() => handleRemoveFromCart(item.id)}
+                >
+                  Remove
+                </button>
+              </div>
             ))}
+            <p>Total: {sum}$</p>
           </ul>
         )}
-        <button onClick={onClose}>Close</button>
+        <button onClick={onClose} class="button-78" role="button">
+          Close
+        </button>
       </div>
     </div>
   );

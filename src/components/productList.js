@@ -4,13 +4,14 @@ import productList from "../products-list.json";
 import "./product.scss";
 import Product from "./product";
 import Navigation from "./navbar";
+import CartDialog from "./cartDialog";
 
 const ProductList = () => {
   const dispatch = useDispatch();
   const [categories, setCategories] = useState([]);
   const [checkedCategories, setCheckedCategories] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const products = useSelector((state) => state.filteredProductList);
+  const [isCartDisplay, setCartDisplay] = useState(false);
   let result = productList.filter(function (obj) {
     if (checkedCategories.length > 0) {
       return (
@@ -40,7 +41,11 @@ const ProductList = () => {
   return (
     <div className="mainDiv">
       <div>
-        <Navigation inputValue={inputValue} setInputValue={setInputValue} />
+        <Navigation
+          inputValue={inputValue}
+          setInputValue={setInputValue}
+          setOpen={setCartDisplay}
+        />
       </div>
       <div className="page">
         <div className="checkbox-mainDiv">
@@ -64,6 +69,12 @@ const ProductList = () => {
             <Product product={value} key={index} />
           ))}{" "}
         </div>
+        {isCartDisplay && (
+          <CartDialog
+            isOpen={isCartDisplay}
+            onClose={() => setCartDisplay(false)}
+          />
+        )}
       </div>
     </div>
   );
